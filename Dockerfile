@@ -1,4 +1,4 @@
-FROM node:laste as build
+FROM node:latest as build
 WORKDIR /home
 
 COPY . /home/
