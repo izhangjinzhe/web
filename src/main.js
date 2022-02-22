@@ -4,7 +4,7 @@ import router from './router'
 import store from './store'
 import './styles/basic.scss'
 import './utils/veevalidate'
-import {fetchAxios, toastComponent} from '@/utils'
+import { fetchAxios, toastComponent } from '@/utils'
 
 Vue.use(fetchAxios)
 Vue.use(toastComponent)
