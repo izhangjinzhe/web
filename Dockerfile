@@ -1,6 +1,6 @@
 FROM node:latest as build
-WORKDIR /home
+WORKDIR /
+COPY . /
 
-COPY . /home/
 RUN npm install && npm run build --mode production
 VOLUME /docker_volume/nginx/html /dist
