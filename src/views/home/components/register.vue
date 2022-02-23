@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import {ValidationObserver, ValidationProvider} from 'vee-validate'
+import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import uuid from 'uuid/v4'
 
 export default {
@@ -85,7 +85,7 @@ export default {
     ValidationProvider,
     ValidationObserver
   },
-  data() {
+  data () {
     return {
       captchaImg: '',
       form: {
@@ -97,20 +97,20 @@ export default {
       }
     }
   },
-  created() {
+  created () {
     if (!localStorage.getItem('uuid')) {
       localStorage.setItem('uuid', uuid())
     }
     this.getCaptcha()
   },
   methods: {
-    async getCaptcha() {
-      const {data} = await this.$fetch.get('/getCaptcha', {
+    async getCaptcha () {
+      const { data } = await this.$fetch.get('/getCaptcha', {
         uuid: localStorage.getItem('uuid')
       })
       this.captchaImg = data.data
     },
-    async submit() {
+    async submit () {
       await this.$fetch.post('/register', {
         ...this.form,
         uuid: localStorage.getItem('uuid')

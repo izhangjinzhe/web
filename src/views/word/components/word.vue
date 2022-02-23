@@ -13,7 +13,7 @@
 <script>
 export default {
   name: 'Word',
-  data() {
+  data () {
     return {
       id: 0,
       highTexts: [],
@@ -25,7 +25,7 @@ export default {
       }
     }
   },
-  mounted() {
+  mounted () {
     this.$refs.txt.addEventListener('mouseup', () => {
       const txt = window.getSelection()
       const range = txt.getRangeAt(0)
@@ -51,7 +51,7 @@ export default {
     })
   },
   methods: {
-    creatTips() {
+    creatTips () {
       this.txt.input = document.createElement('input')
       this.txt.input.className = `input${this.id++}`
       this.txt.input.style.position = 'absolute'

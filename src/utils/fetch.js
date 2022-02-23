@@ -1,13 +1,13 @@
 import axios from 'axios'
-import {toastComponent} from '@/utils/index'
+import { toastComponent } from '@/utils/index'
 
 class fetch {
-  constructor(url) {
+  constructor (url) {
     this.baseUrl = url
   }
 
   // 获取配置
-  getBaseConfig() {
+  getBaseConfig () {
     return {
       baseURL: '/',
       timeout: 10000,
@@ -19,7 +19,7 @@ class fetch {
   }
 
   // 设定拦截器
-  interceptors(instance) {
+  interceptors (instance) {
     instance.interceptors.request.use((conf) => {
       return conf
     }, (err) => {
@@ -41,14 +41,14 @@ class fetch {
   }
 
   // 创建实例
-  request(config) {
+  request (config) {
     const instance = axios.create()
     const newOptions = Object.assign(this.getBaseConfig(), config)
     this.interceptors(instance)
     return instance(newOptions)
   }
 
-  get(url, params, config) {
+  get (url, params, config) {
     return this.request({
       ...config,
       method: 'get',
@@ -57,7 +57,7 @@ class fetch {
     })
   }
 
-  post(url, data, config) {
+  post (url, data, config) {
     return this.request({
       ...config,
       method: 'post',

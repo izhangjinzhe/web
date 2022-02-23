@@ -38,7 +38,7 @@
 </template>
 
 <script>
-import {ValidationObserver, ValidationProvider} from 'vee-validate'
+import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import uuid from 'uuid/v4'
 
 export default {
@@ -47,7 +47,7 @@ export default {
     ValidationProvider,
     ValidationObserver
   },
-  data() {
+  data () {
     return {
       captchaImg: '',
       form: {
@@ -56,24 +56,24 @@ export default {
       }
     }
   },
-  created() {
+  created () {
     if (!localStorage.getItem('uuid')) {
       localStorage.setItem('uuid', uuid())
     }
     this.getCaptcha()
   },
   methods: {
-    goForget() {
+    goForget () {
       this.$router.push('/home/forget')
     },
-    async getCaptcha() {
-      const {data} = await this.$fetch.get('/getCaptcha', {
+    async getCaptcha () {
+      const { data } = await this.$fetch.get('/getCaptcha', {
         uuid: localStorage.getItem('uuid')
       })
       this.captchaImg = data.data
     },
-    async submit() {
-      const {data} = await this.$fetch.post('/forget111', this.form)
+    async submit () {
+      const { data } = await this.$fetch.post('/forget111', this.form)
       alert(`邮箱${data.data.accepted}已发送，请注意查收！`)
     }
   }

@@ -36,13 +36,13 @@ export default {
       }
     }
   },
-  data() {
+  data () {
     return {
       curShow: false
     }
   },
   watch: {
-    show(val) {
+    show (val) {
       if (val) this.curShow = val
       setTimeout(() => {
         this.curShow = false
@@ -50,7 +50,7 @@ export default {
     }
   },
   methods: {
-    close() {
+    close () {
       console.log(1)
     }
   }
