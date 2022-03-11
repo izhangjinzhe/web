@@ -4,19 +4,30 @@
       <div class="row">
         <div class="col-sm-4">
           <div class="form-group">
-            <validation-provider v-slot="{ errors }" name="用户名" rules="required|email">
-              <label for="user">邮箱</label>
-              <input id="user" v-model="form.username" class="form-control" placeholder="请输入邮箱" type="text"/>
+            <validation-provider v-slot="{ errors }" name="用户名" rules="required|min:6">
+              <label for="username">用户名</label>
+              <input id="username" v-model="form.username" class="form-control" placeholder="请输入邮箱" type="text"/>
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
           </div>
         </div>
       </div>
-      <span id="helpBlock" class="help-block">将会成为您唯一的用户名</span>
       <div class="row">
         <div class="col-sm-4">
           <div class="form-group">
-            <validation-provider v-slot="{ errors }" name="昵称" rules="required|min:4|max:8">
+            <validation-provider v-slot="{ errors }" name="用户名" rules="required|email">
+              <label for="email">邮箱</label>
+              <input id="email" v-model="form.email" class="form-control" placeholder="请输入邮箱" type="text"/>
+              <span class="text-danger">{{ errors[0] }}</span>
+            </validation-provider>
+          </div>
+        </div>
+      </div>
+<!--      <span id="helpBlock" class="help-block">将会成为您唯一的用户名</span>-->
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <validation-provider v-slot="{ errors }" name="昵称" rules="required|min:4">
               <label for="name">昵称</label>
               <input id="name" v-model="form.name" class="form-control" placeholder="请输入昵称"
                      type="text">
@@ -42,7 +53,7 @@
           <div class="form-group">
             <label for="conPassword">确认密码</label>
             <validation-provider v-slot="{ errors }" :rules="`required|min:6|max:12|copy:${form.password}`" name="确认密码">
-              <input id="conPassword" v-model="form._password" class="form-control" placeholder="请输入密码"
+              <input id="conPassword" v-model="_password" class="form-control" placeholder="请输入密码"
                      type="password">
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
@@ -78,6 +89,7 @@
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import uuid from 'uuid/v4'
+import md5 from 'js-md5'
 
 export default {
   name: 'Register',
@@ -88,11 +100,13 @@ export default {
   data () {
     return {
       captchaImg: '',
+      // eslint-disable-next-line vue/no-reserved-keys
+      _password: '',
       form: {
         username: '',
+        email: '',
         name: '',
         password: '',
-        _password: '',
         code: ''
       }
     }
@@ -113,11 +127,12 @@ export default {
     async submit () {
       await this.$fetch.post('/register', {
         ...this.form,
+        password: md5(this.form.password),
         uuid: localStorage.getItem('uuid')
       }, {
         toast: true
       })
-      await this.$router.push('/login')
+      await this.$router.push('/home/login')
     }
   }
 }

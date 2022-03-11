@@ -1,18 +1,25 @@
 <template>
   <validation-observer v-slot="{ handleSubmit }">
-    <form @submit.prevent="handleSubmit(submit)">
+    <form @submit.prevent="handleSubmit(updatePwd)">
+      <div class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <button class="btn btn-primary" v-if="show" type="submit" @click="back">返回</button>
+          </div>
+        </div>
+      </div>
       <div class="row">
         <div class="col-sm-4">
           <div class="form-group">
             <label for="user">邮箱</label>
-            <validation-provider v-slot="{ errors }" name="用户名" rules="required|email">
-              <input id="user" v-model="form.username" class="form-control" placeholder="请输入邮箱" type="text"/>
+            <validation-provider v-slot="{ errors }" name="邮箱" rules="required|email">
+              <input :disabled="show" id="user" v-model="email" class="form-control" placeholder="请输入邮箱" type="text"/>
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
           </div>
         </div>
       </div>
-      <div class="row">
+      <div v-if="show" class="row" >
         <div class="col-sm-4">
           <div class="form-group">
             <label for="code">验证码</label>
@@ -21,15 +28,38 @@
                      type="text">
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
-            <div class="captcha" @click="getCaptcha" v-html="captchaImg">
-            </div>
+          </div>
+        </div>
+      </div>
+      <div v-if="show" class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="password">密码</label>
+            <validation-provider v-slot="{ errors }" name="密码" rules="required|min:6|max:12">
+              <input id="password" v-model="form.password" class="form-control" placeholder="请输入密码"
+                     type="password">
+              <span class="text-danger">{{ errors[0] }}</span>
+            </validation-provider>
+          </div>
+        </div>
+      </div>
+      <div v-if="show" class="row">
+        <div class="col-sm-4">
+          <div class="form-group">
+            <label for="conPassword">确认密码</label>
+            <validation-provider v-slot="{ errors }" :rules="`required|min:6|max:12|copy:${form.password}`" name="确认密码">
+              <input id="conPassword" v-model="_password" class="form-control" placeholder="请输入密码"
+                     type="password">
+              <span class="text-danger">{{ errors[0] }}</span>
+            </validation-provider>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-4">
           <div class="form-group">
-            <button class="btn btn-primary" type="submit">提交</button>
+            <button class="btn btn-primary" v-if="!show" type="button" @click="sendMail">发送验证邮件</button>
+            <button class="btn btn-primary" v-else type="submit">提交</button>
           </div>
         </div>
       </div>
@@ -39,7 +69,7 @@
 
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
-import uuid from 'uuid/v4'
+import md5 from 'js-md5'
 
 export default {
   name: 'Forget',
@@ -49,32 +79,40 @@ export default {
   },
   data () {
     return {
-      captchaImg: '',
+      show: false,
+      email: '',
+      // eslint-disable-next-line vue/no-reserved-keys
+      _password: '',
       form: {
-        username: '',
-        code: ''
+        code: '',
+        password: ''
       }
     }
   },
-  created () {
-    if (!localStorage.getItem('uuid')) {
-      localStorage.setItem('uuid', uuid())
-    }
-    this.getCaptcha()
-  },
   methods: {
+    back () {
+      console.log(1)
+      this.show = false
+      this.$forceUpdate()
+    },
     goForget () {
       this.$router.push('/home/forget')
     },
-    async getCaptcha () {
-      const { data } = await this.$fetch.get('/getCaptcha', {
-        uuid: localStorage.getItem('uuid')
-      })
-      this.captchaImg = data.data
+    async updatePwd () {
+      const { data } = await this.$fetch.post('/updatePwd', {
+        ...this.form,
+        password: md5(this.form.password),
+        email: this.email
+      }, { toast: true })
+      if (data.code === 200) {
+        this.$router.push('/home/login')
+      }
     },
-    async submit () {
-      const { data } = await this.$fetch.post('/forget111', this.form)
-      alert(`邮箱${data.data.accepted}已发送，请注意查收！`)
+    async sendMail () {
+      const { data } = await this.$fetch.get('/sendMail', { email: this.email }, { toast: true })
+      if (data.code === 200) {
+        this.show = true
+      }
     }
   }
 }

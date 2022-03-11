@@ -5,14 +5,14 @@
         <div class="col-sm-4">
           <div class="form-group">
             <label for="user">用户名</label>
-            <validation-provider v-slot="{ errors }" name="用户名" rules="required|email">
+            <validation-provider v-slot="{ errors }" name="用户名" rules="required|min:6">
               <input id="user" v-model="form.username" class="form-control" placeholder="请输入用户名" type="text"/>
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
           </div>
         </div>
       </div>
-      <span id="helpBlock" class="help-block">使用手机或者邮箱中的任意一个均可（若采用手机，请确保你的账号已绑定过该手机）</span>
+<!--      <span id="helpBlock" class="help-block">使用手机或者邮箱中的任意一个均可（若采用手机，请确保你的账号已绑定过该手机）</span>-->
       <div class="row">
         <div class="col-sm-4">
           <div class="form-group">
@@ -54,6 +54,7 @@
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import uuid from 'uuid/v4'
+import md5 from 'js-md5'
 
 export default {
   name: 'Login',
@@ -90,6 +91,7 @@ export default {
     async submit () {
       await this.$fetch.post('/login', {
         ...this.form,
+        password: md5(this.form.password),
         uuid: localStorage.getItem('uuid')
       }, {
         toast: true

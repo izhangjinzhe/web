@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    张晋哲@2021
+    <a href="https://beian.miit.gov.cn" target="_blank">鲁ICP备2022007356号</a> 张晋哲@2021
   </div>
 </template>
 
