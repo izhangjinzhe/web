@@ -9,7 +9,7 @@ class fetch {
   // 获取配置
   getBaseConfig () {
     return {
-      baseURL: '/api',
+      baseURL: 'http://101.43.153.234:8081/api',
       timeout: 10000,
       // withCredentials: true,
       headers: {
