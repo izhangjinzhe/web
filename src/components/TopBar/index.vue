@@ -22,7 +22,7 @@
               <li><a href="#">个人信息</a></li>
               <li><a href="#">设置</a></li>
               <li class="divider" role="separator"></li>
-              <li><a href="#">退</a></li>
+              <li><a href="#">退出</a></li>
             </ul>
           </li>
         </ul>
