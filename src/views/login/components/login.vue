@@ -80,7 +80,7 @@ export default {
   },
   methods: {
     goForget () {
-      this.$router.push('/home/forget')
+      this.$router.push({ name: 'ForgetModule' })
     },
     async getCaptcha () {
       const { data } = await this.$fetch.get('/getCaptcha', {

@@ -6,34 +6,30 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    redirect: '/home/login',
+    redirect: '/login/index',
     component: () => import('../App')
   },
   {
-    path: '/home',
-    name: 'Home',
-    redirect: '/home/login',
-    component: () => import('../views/home/home'),
+    path: '/login',
+    name: 'LoginPage',
+    redirect: '/login/index',
+    component: () => import('../views/login'),
     children: [
       {
-        path: 'login',
-        name: 'Login',
-        component: () => import('../views/home/components/login')
+        path: 'index',
+        name: 'LoginModule',
+        component: () => import('../views/login/components/login')
       },
       {
         path: 'register',
-        name: 'Register',
-        component: () => import('../views/home/components/register')
+        name: 'RegisterModule',
+        component: () => import('../views/login/components/register')
       }, {
         path: 'forget',
-        name: 'Forget',
-        component: () => import('../views/home/components/forget')
+        name: 'ForgetModule',
+        component: () => import('../views/login/components/forget')
       }
     ]
-  },
-  {
-    path: '/word',
-    component: () => import('../views/word/index')
   }
 ]
 

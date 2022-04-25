@@ -91,7 +91,6 @@ export default {
   },
   methods: {
     back () {
-      console.log(1)
       this.show = false
       this.$forceUpdate()
     },
