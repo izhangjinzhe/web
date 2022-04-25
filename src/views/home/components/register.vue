@@ -88,7 +88,7 @@
 
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
-import uuid from 'uuid/v4'
+import { v4 } from 'uuid'
 import md5 from 'js-md5'
 
 export default {
@@ -113,7 +113,7 @@ export default {
   },
   created () {
     if (!localStorage.getItem('uuid')) {
-      localStorage.setItem('uuid', uuid())
+      localStorage.setItem('uuid', v4())
     }
     this.getCaptcha()
   },
