@@ -4,26 +4,14 @@
       <div class="row">
         <div class="col-sm-4">
           <div class="form-group">
-            <validation-provider v-slot="{ errors }" name="用户名" rules="required|min:6">
-              <label for="username">用户名</label>
+            <validation-provider v-slot="{ errors }" name="用户名" rules="required|email">
+              <label for="username" class="">用户名<em>(邮箱)</em></label>
               <input id="username" v-model="form.username" class="form-control" placeholder="请输入邮箱" type="text"/>
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="form-group">
-            <validation-provider v-slot="{ errors }" name="用户名" rules="required|email">
-              <label for="email">邮箱</label>
-              <input id="email" v-model="form.email" class="form-control" placeholder="请输入邮箱" type="text"/>
-              <span class="text-danger">{{ errors[0] }}</span>
-            </validation-provider>
-          </div>
-        </div>
-      </div>
-<!--      <span id="helpBlock" class="help-block">将会成为您唯一的用户名</span>-->
       <div class="row">
         <div class="col-sm-4">
           <div class="form-group">
@@ -104,7 +92,6 @@ export default {
       _password: '',
       form: {
         username: '',
-        email: '',
         name: '',
         password: '',
         code: ''
@@ -119,20 +106,20 @@ export default {
   },
   methods: {
     async getCaptcha () {
-      const { data } = await this.$fetch.get('/getCaptcha', {
+      const { data } = await this.$fetch.get('/public/getCaptcha', {
         uuid: localStorage.getItem('uuid')
       })
       this.captchaImg = data.data
     },
     async submit () {
-      await this.$fetch.post('/register', {
+      await this.$fetch.post('/public/register', {
         ...this.form,
         password: md5(this.form.password),
         uuid: localStorage.getItem('uuid')
       }, {
         toast: true
       })
-      await this.$router.push('/home/login')
+      await this.$router.push({ name: 'LoginModule' })
     }
   }
 }
@@ -141,5 +128,8 @@ export default {
 <style lang="scss" scoped>
 .container {
   background: #ffffff;
+  .captcha{
+    margin: 10px 0 0;
+  }
 }
 </style>

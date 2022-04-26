@@ -4,9 +4,9 @@
       <div class="row">
         <div class="col-sm-4">
           <div class="form-group">
-            <label for="user">用户名</label>
-            <validation-provider v-slot="{ errors }" name="用户名" rules="required|min:6">
-              <input id="user" v-model="form.username" class="form-control" placeholder="请输入用户名" type="text"/>
+            <validation-provider v-slot="{ errors }" name="用户名" rules="required|email">
+              <label for="username" class="">用户名<em>(邮箱)</em></label>
+              <input id="username" v-model="form.username" class="form-control" placeholder="请输入用户名" type="text"/>
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
           </div>
@@ -83,13 +83,14 @@ export default {
       this.$router.push({ name: 'ForgetModule' })
     },
     async getCaptcha () {
-      const { data } = await this.$fetch.get('/getCaptcha', {
+      const { data } = await this.$fetch.get('/public/getCaptcha', {
         uuid: localStorage.getItem('uuid')
       })
+      console.log(data)
       this.captchaImg = data.data
     },
     async submit () {
-      await this.$fetch.post('/login', {
+      await this.$fetch.post('/public/login', {
         ...this.form,
         password: md5(this.form.password),
         uuid: localStorage.getItem('uuid')
@@ -104,5 +105,8 @@ export default {
 <style lang="scss" scoped>
 .container {
   background: #ffffff;
+  .captcha{
+    margin: 10px 0 0;
+  }
 }
 </style>

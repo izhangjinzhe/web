@@ -13,7 +13,7 @@
           <div class="form-group">
             <label for="user">邮箱</label>
             <validation-provider v-slot="{ errors }" name="邮箱" rules="required|email">
-              <input :disabled="show" id="user" v-model="email" class="form-control" placeholder="请输入邮箱" type="text"/>
+              <input :disabled="show" id="user" v-model="username" class="form-control" placeholder="请输入邮箱" type="text"/>
               <span class="text-danger">{{ errors[0] }}</span>
             </validation-provider>
           </div>
@@ -80,7 +80,7 @@ export default {
   data () {
     return {
       show: false,
-      email: '',
+      username: '',
       // eslint-disable-next-line vue/no-reserved-keys
       _password: '',
       form: {
@@ -98,17 +98,17 @@ export default {
       this.$router.push('/home/forget')
     },
     async updatePwd () {
-      const { data } = await this.$fetch.post('/updatePwd', {
+      const { data } = await this.$fetch.post('/public/updatePwd', {
         ...this.form,
         password: md5(this.form.password),
-        email: this.email
+        username: this.username
       }, { toast: true })
       if (data.code === 200) {
         this.$router.push('/home/login')
       }
     },
     async sendMail () {
-      const { data } = await this.$fetch.get('/sendMail', { email: this.email }, { toast: true })
+      const { data } = await this.$fetch.get('/public/sendMail', { email: this.username }, { toast: true })
       if (data.code === 200) {
         this.show = true
       }

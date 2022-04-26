@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { toastComponent } from '@/utils/index'
 
+console.log(process.env)
 class fetch {
   constructor (url) {
     this.baseUrl = url
@@ -9,7 +10,7 @@ class fetch {
   // 获取配置
   getBaseConfig () {
     return {
-      baseURL: 'http://101.43.153.234:8081/api',
+      baseURL: process.env.NODE_ENV === 'development' ? 'http://zhangjinzhe.cn:10000/mock/10/api' : 'http://101.43.153.234:8081/api',
       timeout: 10000,
       // withCredentials: true,
       headers: {
