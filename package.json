@@ -5,7 +5,8 @@
   "scripts": {
     "serve": "vue-cli-service serve ",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "mock": "node src/mock/mock.js http://zhangjinzhe.cn:17002/mock/62690813eb3ddc000daa37cb http://localhost:8080"
   },
   "dependencies": {
     "axios": "^0.24.0",

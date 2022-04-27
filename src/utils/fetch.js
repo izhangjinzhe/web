@@ -10,7 +10,7 @@ class fetch {
   // 获取配置
   getBaseConfig () {
     return {
-      baseURL: process.env.NODE_ENV === 'development' ? 'http://zhangjinzhe.cn:10000/mock/10/api' : 'http://101.43.153.234:17777/api',
+      baseURL: process.env.NODE_ENV === 'development' ? '/api' : 'http://101.43.153.234:17777/api',
       timeout: 10000,
       // withCredentials: true,
       headers: {
