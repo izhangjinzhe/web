@@ -7,10 +7,8 @@
 </template>
 
 <script>
-
 import TopBar from '@/components/TopBar'
 import ZFooter from '@/components/Footer'
-
 export default {
   name: 'App',
   components: {
