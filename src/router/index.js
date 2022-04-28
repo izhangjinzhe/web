@@ -6,14 +6,14 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    redirect: '/login/index',
-    component: () => import('../App')
+    redirect: '/home',
+    component: () => import('@/App')
   },
   {
     path: '/login',
     name: 'LoginPage',
     redirect: '/login/index',
-    component: () => import('../views/login'),
+    component: () => import('@/views/login'),
     children: [
       {
         path: 'index',
@@ -30,10 +30,19 @@ const routes = [
         component: () => import('../views/login/components/forget')
       }
     ]
+  },
+  {
+    path: '/home',
+    component: () => import('@/views/home/index')
+  },
+  {
+    path: '/ask',
+    component: () => import('@/views/home/ask')
   }
 ]
 
 const router = new VueRouter({
+  linkExactActiveClass: 'active',
   routes
 })
 

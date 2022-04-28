@@ -2,7 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import './styles/basic.scss'
+import './styles/index.scss'
 import './utils/veevalidate'
 import { fetchAxios, toastComponent } from '@/utils'
 

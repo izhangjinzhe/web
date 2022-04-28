@@ -1,7 +1,7 @@
 <template>
-  <div class="page">
-    <div class="container main">
-      <ul class="nav nav-tabs">
+  <div class="container ">
+    <div class="card">
+      <ul class="nav nav-tabs mb10">
         <li :class="{active: $route.path.indexOf('login/index') > -1 }" role="presentation">
           <router-link to="/login/index">登录</router-link>
         </li>
@@ -24,14 +24,3 @@ export default {
   name: 'Home'
 }
 </script>
-
-<style lang="scss" scoped>
-.main {
-  padding: 10px;
-  background: #ffffff;
-
-  .nav {
-    margin: 0 0 10px;
-  }
-}
-</style>
