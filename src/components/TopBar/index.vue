@@ -10,13 +10,13 @@
         </button>
         <a class="navbar-brand">
           <router-link tag="span" to="/home">
-            <span class="glyphicon glyphicon-star finger"></span>
+            <span class="finger">首页</span>
           </router-link>
         </a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="navbar-collapse">
+      <div class="collapse navbar-collapse" id="navbar-collapse" style="z-index: 999999999999999999999">
         <ul class="nav navbar-nav">
           <router-link tag="li" to="/ask"><a>提问</a></router-link>
           <router-link tag="li" to="/share"><a>分享</a></router-link>

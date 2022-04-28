@@ -21,11 +21,13 @@ export default {
 <style lang="scss" scoped>
 #app {
   position: relative;
+  z-index: 0;
   #header{
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
+    z-index: 2;
   }
   #main {
     position: absolute;
@@ -34,12 +36,14 @@ export default {
     right: 0;
     bottom: 60px;
     flex: 1;
+    z-index: 1;
   }
   #footer{
     position: absolute;
     left: 0;
     right: 0;
     bottom: 0;
+    z-index: 1;
   }
 }
 </style>
