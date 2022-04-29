@@ -1,18 +1,17 @@
 <template>
-  <div class="card display_flex">
-    <img class="img-circle w50 h50 mr10" src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4wEar?ver=c556" alt="图片" />
-    <div class="flex_1">
-      <div class="display_flex align-items_center h20">
-        <span class="label label-primary mr10 ">提问</span>
-        <span class="bold fs20">123123123</span>
+  <div class="card p-2">
+    <div>
+      <div class="d-flex align-items-center mb-2">
+        <span class="badge bg-primary rounded-pill me-2 fs-7">{{ data.type }}</span>
+        <span class="fs-6 fw-bold">{{ data.title }}</span>
       </div>
-      <div class="display_flex h30 align-items_flex-end">
-        <span class="bold mr10">123123</span>
-        <small class="mr10">12级</small>
-        <span>123123123</span>
-        <span class="flex_1 tex text-right">
-          <span class="glyphicon glyphicon-bullhorn mr5"></span>
-          <span>123</span>
+      <div class="d-flex align-items-end">
+    <img  class="me-2 rounded-circle" width="20px" height="20px" src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4wEar?ver=c556" alt="图片" />
+        <span class="fw-bold fs-7 me-2">{{ data.user.name }}</span>
+        <span class="me-2 fs-7">{{ data.user.level }}</span>
+        <span class="ms-auto">
+          <span class="fs-7 fw-bold me-1">{{ data.commit }}</span>
+          <i class="bi bi-chat-left-dots fs-7"></i>
         </span>
       </div>
     </div>
@@ -21,7 +20,13 @@
 
 <script>
 export default {
-  name: 'ArticleItem'
+  name: 'ArticleItem',
+  props: {
+    data: {
+      type: Object,
+      default: () => ({})
+    }
+  }
 }
 </script>
 

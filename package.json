@@ -9,7 +9,9 @@
     "mock": "node src/mock/mock.js http://zhangjinzhe.cn:17002/mock/62690813eb3ddc000daa37cb http://localhost:8080"
   },
   "dependencies": {
+    "@popperjs/core": "^2.11.5",
     "axios": "^0.24.0",
+    "bootstrap": "^5.1.3",
     "core-js": "^3.20.1",
     "js-md5": "^0.7.3",
     "uuid": "^8.3.2",

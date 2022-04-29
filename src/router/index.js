@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    redirect: '/home',
+    redirect: '/home/index',
     component: () => import('@/App')
   },
   {
@@ -32,12 +32,8 @@ const routes = [
     ]
   },
   {
-    path: '/home',
+    path: '/home/:type',
     component: () => import('@/views/home/index')
-  },
-  {
-    path: '/ask',
-    component: () => import('@/views/home/ask')
   }
 ]
 

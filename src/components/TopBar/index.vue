@@ -1,52 +1,39 @@
 <template>
-  <nav class="navbar navbar-default">
-    <div class="container">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="true">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand">
-          <router-link tag="span" to="/home">
-            <span class="finger">首页</span>
-          </router-link>
-        </a>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <router-link tag="a" class="navbar-brand fs-6" to="/home/index">首页</router-link>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbar">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          <router-link tag="a" class="nav-link" to="/home/ask">提问</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link tag="a" class="nav-link" to="/home/share">分享</router-link>
+        </li>
+        <li class="nav-item">
+          <router-link tag="a" class="nav-link" to="/home/advice">建议</router-link>
+        </li>
+        <li class="nav-item me-auto">
+        </li>
+      </ul>
+      <div class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="搜索">
+        <div class="dropdown">
+          <button class="btn dropdown-toggle" href="#" data-bs-toggle="dropdown">
+            <i class="bi bi-person-circle me-1"></i>
+          </button>
+          <ul class="dropdown-menu ">
+            <li><a class="dropdown-item" href="#">个人中心</a></li>
+            <li><a class="dropdown-item text-danger" href="#">退出</a></li>
+          </ul>
+        </div>
       </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="navbar-collapse" style="z-index: 999999999999999999999">
-        <ul class="nav navbar-nav">
-          <router-link tag="li" to="/ask"><a>提问</a></router-link>
-          <router-link tag="li" to="/share"><a>分享</a></router-link>
-          <router-link tag="li" to="/advice"><a>建议</a></router-link>
-<!--          <router-link tag="li" to="/home/ask"><a>公告</a></router-link>-->
-<!--          <router-link tag="li" to="/home/ask"><a>动态</a></router-link>-->
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="nav navbar-nav navbar-form">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="搜索">
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="button">
-                  <span class="glyphicon glyphicon-search"></span>
-                </button>
-              </span>
-            </div><!-- /input-group -->
-          </li>
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-              <span class="glyphicon glyphicon-user"></span><span class="caret"></span></a>
-            <ul class="dropdown-menu">
-              <li><a href="#">个人中心</a></li>
-              <li><a href="#">退出</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
+    </div>
+  </div>
+</nav>
 </template>
 
 <script>
