@@ -1,67 +1,35 @@
 <template>
-  <validation-observer v-slot="{ handleSubmit }">
-    <form @submit.prevent="handleSubmit(submit)">
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="form-group">
-            <validation-provider v-slot="{ errors }" name="用户名" rules="required|email">
-              <label for="username" class="">用户名<em>(邮箱)</em></label>
-              <input id="username" v-model="form.username" class="form-control" placeholder="请输入用户名" type="text"/>
-              <span class="text-danger">{{ errors[0] }}</span>
-            </validation-provider>
-          </div>
-        </div>
-      </div>
-<!--      <span id="helpBlock" class="help-block">使用手机或者邮箱中的任意一个均可（若采用手机，请确保你的账号已绑定过该手机）</span>-->
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="form-group">
-            <validation-provider v-slot="{ errors }" name="密码" rules="required|min:6|max:12">
-              <label for="password">密码</label>
-              <input id="password" v-model="form.password" class="form-control" placeholder="请输入密码"
-                     type="password">
-              <span class="text-danger">{{ errors[0] }}</span>
-            </validation-provider>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="form-group">
-            <label for="code">验证码</label>
-            <validation-provider v-slot="{ errors }" name="验证码" rules="required|length:6">
-              <input id="code" v-model="form.code" class="form-control" maxlength="6" placeholder="请输入验证码"
-                     type="text">
-              <span class="text-danger">{{ errors[0] }}</span>
-            </validation-provider>
-            <div class="captcha" @click="getCaptcha" v-html="captchaImg">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="form-group">
-            <button class="btn btn-primary" type="submit">立即登录</button>
-            <button class="btn btn-link" type="button" @click="goForget">忘记密码？</button>
-          </div>
-        </div>
-      </div>
-    </form>
-  </validation-observer>
+  <form class="col-sm-12 col-md-4" @submit="submit">
+    <div class="mb-2">
+      <label for="username" class="form-label">邮箱</label>
+      <input type="email" v-model="form.username" class="form-control" id="username" required>
+      <div class="form-text">您的邮箱将作为您的唯一用户名</div>
+    </div>
+    <div class="mb-2">
+      <label for="password" class="form-label">密码</label>
+      <input type="password" v-model="form.password" class="form-control" id="password" minlength="8" maxlength="16" required>
+    </div>
+    <div class="mb-2">
+      <label for="code" class="form-label">验证码</label>
+      <input class="form-control" v-model="form.code" maxlength="6" minlength="6" id="code">
+    </div>
+    <div class="mb-2">
+      <div class="captcha" @click="getCaptcha" v-html="captchaImg"></div>
+    </div>
+    <div>
+      <button class="btn btn-primary me-2" type="submit">登录</button>
+      <router-link tag="button" class="btn btn-link" type="submit" to="/login/forget">忘记密码</router-link>
+    </div>
+  </form>
+
 </template>
 
 <script>
-import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import { v4 } from 'uuid'
 import md5 from 'js-md5'
 
 export default {
   name: 'Login',
-  components: {
-    ValidationProvider,
-    ValidationObserver
-  },
   data () {
     return {
       captchaImg: '',
