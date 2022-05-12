@@ -1,6 +1,8 @@
 <template>
   <div class="card p-2">
-    <article-item class="mb-2" v-for="item in list" :key="item.id" :data="item"></article-item>
+    <div v-loading="loading" style="min-height: 200px" class="position-relative">
+      <article-item class="mb-2" v-for="item in list" :key="item.id" :data="item"></article-item>
+    </div>
     <div class="mt-2 text-center">
       <button type="button" class="btn btn-outline-primary btn-sm me-2">上一页</button>
       <button type="button" class="btn btn-outline-primary btn-sm">下一页</button>
@@ -15,6 +17,7 @@ export default {
   components: { ArticleItem },
   data () {
     return {
+      loading: false,
       list: []
     }
   },
@@ -34,8 +37,10 @@ export default {
   },
   methods: {
     async getList (type) {
+      this.loading = true
       const { data } = await this.$fetch.get('/public/article_list', { type })
       this.list = data.data.list
+      this.loading = false
     }
   }
 }

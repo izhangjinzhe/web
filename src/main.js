@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import './styles/index.scss'
 import './utils/veevalidate'
+import './directive'
 import { fetchAxios, toastComponent } from '@/utils'
 
 Vue.use(fetchAxios)

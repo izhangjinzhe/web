@@ -69,5 +69,7 @@ export default {
 </script>
 
 <style scoped>
-
+.a{
+  position: relative;
+}
 </style>
