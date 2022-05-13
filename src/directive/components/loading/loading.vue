@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
-    <div v-show="s" class="position-absolute top-0 w-100 h-100 bottom-0" style="z-index: 1;background: rgba(255,255,255,.8)">
-      <div class="position-absolute top-0 w-100 h-100 bottom-0 d-flex justify-content-center">
+    <div v-show="s" class="position-absolute top-0 start-0 end-0 bottom-0" style="z-index: 1;background: rgba(255,255,255,.8)">
+      <div class="position-absolute top-0 start-0 end-0 bottom-0 d-flex justify-content-center">
         <div class="m-auto spinner-grow text-primary" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>

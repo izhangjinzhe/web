@@ -17,7 +17,8 @@ export default {
   components: { ArticleItem },
   data () {
     return {
-      loading: false,
+      loading: true,
+      a: true,
       list: []
     }
   },
