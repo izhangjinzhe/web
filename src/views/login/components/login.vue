@@ -11,7 +11,7 @@
     </div>
     <div class="mb-2">
       <label for="code" class="form-label">验证码</label>
-      <input class="form-control" v-model="form.code" maxlength="6" minlength="6" id="code">
+      <input class="form-control" v-model="form.code" maxlength="6" minlength="6" id="code" required>
     </div>
     <div class="mb-2">
       <div class="captcha" @click="getCaptcha" v-html="captchaImg"></div>
