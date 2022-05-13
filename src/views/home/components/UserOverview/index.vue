@@ -1,6 +1,6 @@
 <template>
-  <div class="card text-center p-2">
-    <img class="img-fluid" src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4wEar?ver=c556" alt="图片" />
+  <div class="card text-center p-2 overflow-hidden" v-login>
+    <img width="70px" height="70px" class="rounded mx-auto d-block" src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4wEar?ver=c556" alt="图片" />
     <div class="fs-5 my-2">名字</div>
     <div class="fs-7 my-1 text-info">男</div>
     <div class="fs-7 my-1 text-info">职业</div>

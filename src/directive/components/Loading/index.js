@@ -1,9 +1,9 @@
 import Vue from 'vue'
-import loading from './loading'
+import loading from './Loading'
 
 const obj = {}
 let component = ''
-const instance = Vue.extend({ ...loading, id: new Date().getTime() })
+const instance = Vue.extend(loading)
 
 export default {
   bind (el, binding, vnode) {

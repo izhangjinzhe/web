@@ -1,6 +1,6 @@
 <template>
   <div class="card p-2">
-    <div class="fw-bold">友情链接</div>
+    <div class="fw-bold mb-1">友情链接</div>
     <div class="d-flex flex-wrap">
       <u class="text-primary me-2 finger">百度</u>
       <u class="text-primary me-2 finger">搜狗</u>

@@ -27,6 +27,7 @@
 <script>
 import { v4 } from 'uuid'
 import md5 from 'js-md5'
+import { setStorage } from 'wanado/src/sources/setStorage'
 
 export default {
   name: 'Login',
@@ -58,13 +59,15 @@ export default {
       this.captchaImg = data.data
     },
     async submit () {
-      await this.$fetch.post('/public/login', {
+      const { data } = await this.$fetch.post('/public/login', {
         ...this.form,
         password: md5(this.form.password),
         uuid: localStorage.getItem('uuid')
       }, {
         toast: true
       })
+      setStorage('userInfo', data.data)
+      await this.$router.push({ path: this.$route.query.refresh || '/home/index' })
     }
   }
 }
