@@ -19,7 +19,7 @@
         <li class="nav-item me-auto">
         </li>
       </ul>
-      <div class="d-flex">
+      <div class="d-flex align-items-center">
         <input class="form-control me-2" type="search" placeholder="搜索">
         <div class="dropdown" v-if="user">
           <button class="btn dropdown-toggle" href="#" data-bs-toggle="dropdown">
@@ -30,6 +30,7 @@
             <li><a class="dropdown-item text-danger" @click="quit">退出</a></li>
           </ul>
         </div>
+        <button v-else-if="!$route.path.includes('login')" class="btn btn-link btn-sm w-50" @click="login">登录</button>
       </div>
     </div>
   </div>
@@ -48,6 +49,14 @@ export default {
     }
   },
   methods: {
+    login () {
+      this.$router.replace({
+        name: 'LoginModule',
+        query: {
+          refresh: this.$route.path
+        }
+      })
+    },
     quit () {
       setStorage('userInfo', null)
       this.$router.replace({ name: 'LoginModule' })

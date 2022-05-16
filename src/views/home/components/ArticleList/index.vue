@@ -1,6 +1,9 @@
 <template>
   <div class="card p-2">
     <div v-loading="loading" style="min-height: 200px" class="position-relative">
+      <div class="">
+        <span>按最新</span>
+      </div>
       <article-item class="mb-2" v-for="item in list" :key="item.id" :data="item" type="list"></article-item>
     </div>
     <div class="mt-2 text-center">

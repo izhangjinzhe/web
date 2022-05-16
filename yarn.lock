@@ -7337,9 +7337,9 @@ vuex@^3.6.2:
   integrity sha512-ETW44IqCgBpVomy520DT5jf8n0zoCac+sxWnn+hMe/CzaSejb/eVw2YToiXYX+Ex/AuHHia28vWTq4goAexFbw==
 
 wanado@^1.4.7:
-  version "1.4.6"
-  resolved "https://registry.npmmirror.com/wanado/-/wanado-1.4.6.tgz#9cca582e4ca4a0418d8e8c3b469b5d0d429fc3ff"
-  integrity sha512-TdBULF4hTvpAhpGszrZ8EBuG9fgdJGMOldxu3xATg0JWJqArnPuLZDQDWTAaONmKhKWl82QH60THN9Xs1pysqw==
+  version "1.4.7"
+  resolved "https://registry.npmmirror.com/wanado/-/wanado-1.4.7.tgz#65f4f438bf32b221f602f8f1c5637609842e59de"
+  integrity sha512-Qkj4tiYpGVfyTcJPgPSEcErwb18e8Eg1M3r+pDWc9YFaF2DFYcxSyAAOg2BvgOqbPlDaz/aWvxJ6ALOsMrKZxA==
 
 watchpack@^2.3.1:
   version "2.3.1"

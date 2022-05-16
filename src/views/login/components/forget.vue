@@ -1,23 +1,23 @@
 <template>
   <form class="col-sm-12 col-md-4" name="forget" @submit="submit">
-    <button class="btn btn-sm btn-outline-primary" v-if="show" type="submit" @click="back">返回</button>
-    <div class="mb-2" v-if="!show">
+    <button class="btn btn-sm btn-outline-primary mb-2" v-if="show" type="submit" @click="back">返回</button>
+    <div class="form-floating mb-2" v-if="!show">
+      <input type="email" class="form-control" v-model="username" id="username" placeholder="" required>
       <label for="username" class="form-label">邮箱</label>
-      <input type="email" class="form-control" v-model="username" id="username" required>
     </div>
     <div v-else>
-      <div class="mb-2">
+      <div class="form-floating mb-2">
+        <input class="form-control" minlength="6" maxlength="6" v-model="form.code" id="code" placeholder="" required>
         <label for="code" class="form-label">邮箱验证码</label>
-        <input class="form-control" minlength="6" maxlength="6" v-model="form.code" id="code" required>
       </div>
-      <div class="mb-2">
-        <label for="password" class="form-label">密码</label>
-        <input type="password" v-model="form.password" class="form-control" id="password" minlength="8" maxlength="16" pattern="^[a-zA-Z]\w{5,17}$" required>
+      <div class="form-floating mb-2">
+        <input type="password" v-model="form.password" class="form-control" id="password" minlength="8" maxlength="16" pattern="^[a-zA-Z]\w{5,17}$" placeholder="" required>
+        <label for="password">密码</label>
         <div class="form-text">字母开头，长度在6~18之间，只能包含字母、数字和下划线</div>
       </div>
-      <div class="mb-2">
-        <label for="_password" class="form-label">确认密码</label>
-        <input type="password" v-model="i_password" class="form-control" id="_password" pattern="^[a-zA-Z]\w{5,17}$" minlength="8" maxlength="16" required>
+      <div class="form-floating mb-2">
+        <input type="password" v-model="i_password" class="form-control" id="_password" pattern="^[a-zA-Z]\w{5,17}$" minlength="8" maxlength="16" placeholder="" required>
+        <label for="_password">确认密码</label>
         <div v-show="form.password && i_password && form.password !== i_password" class="text-danger fs-7 mt-1">两次输入密码不一致</div>
       </div>
     </div>

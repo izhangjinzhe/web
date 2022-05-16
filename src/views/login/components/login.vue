@@ -1,17 +1,16 @@
 <template>
   <form class="col-sm-12 col-md-4" @submit="submit">
-    <div class="mb-2">
-      <label for="username" class="form-label">邮箱</label>
-      <input type="email" v-model="form.username" class="form-control" id="username" required>
-      <div class="form-text">您的邮箱将作为您的唯一用户名</div>
+    <div class="form-floating mb-2">
+      <input type="email" v-model="form.username" class="form-control" id="username" required placeholder="">
+      <label for="username">邮箱</label>
     </div>
-    <div class="mb-2">
-      <label for="password" class="form-label">密码</label>
-      <input type="password" v-model="form.password" class="form-control" id="password" minlength="8" maxlength="16" required>
+    <div class="form-floating mb-2">
+      <input type="text" v-model="form.password" class="form-control" id="password" minlength="8" maxlength="16" placeholder="" required>
+      <label for="password">密码</label>
     </div>
-    <div class="mb-2">
-      <label for="code" class="form-label">验证码</label>
-      <input class="form-control" v-model="form.code" maxlength="6" minlength="6" id="code" required>
+    <div class="form-floating mb-2">
+      <input class="form-control" v-model="form.code" maxlength="6" minlength="6" id="code" placeholder="" required>
+      <label for="code">验证码</label>
     </div>
     <div class="mb-2">
       <div class="captcha" @click="getCaptcha" v-html="captchaImg"></div>
@@ -28,6 +27,7 @@
 import { v4 } from 'uuid'
 import md5 from 'js-md5'
 import { setStorage } from 'wanado/src/sources/setStorage'
+import { getStorage } from 'wanado/src/sources/getStorage'
 
 export default {
   name: 'Login',
@@ -42,8 +42,8 @@ export default {
     }
   },
   created () {
-    if (!localStorage.getItem('uuid')) {
-      localStorage.setItem('uuid', v4())
+    if (!getStorage('uuid')) {
+      setStorage('uuid', v4())
     }
     this.getCaptcha()
   },
@@ -52,17 +52,16 @@ export default {
       this.$router.push({ name: 'ForgetModule' })
     },
     async getCaptcha () {
-      const { data } = await this.$fetch.get('/public/getCaptcha', {
-        uuid: localStorage.getItem('uuid')
+      const { data } = await this.$fetch.get('/public/get_captcha', {
+        uuid: getStorage('uuid')
       })
-      console.log(data)
       this.captchaImg = data.data
     },
     async submit () {
       const { data } = await this.$fetch.post('/public/login', {
         ...this.form,
         password: md5(this.form.password),
-        uuid: localStorage.getItem('uuid')
+        uuid: getStorage('uuid')
       }, {
         toast: true
       })
