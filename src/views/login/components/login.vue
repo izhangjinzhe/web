@@ -1,11 +1,11 @@
 <template>
-  <form class="col-sm-12 col-md-4" @submit="submit">
+  <form class="col-md-12 col-lg-5" @submit="submit">
     <div class="form-floating mb-2">
       <input type="email" v-model="form.username" class="form-control" id="username" required placeholder="">
       <label for="username">邮箱</label>
     </div>
     <div class="form-floating mb-2">
-      <input type="text" v-model="form.password" class="form-control" id="password" minlength="8" maxlength="16" placeholder="" required>
+      <input type="password" v-model="form.password" class="form-control" id="password" minlength="8" maxlength="16" placeholder="" required>
       <label for="password">密码</label>
     </div>
     <div class="form-floating mb-2">
@@ -17,7 +17,7 @@
     </div>
     <div>
       <button class="btn btn-primary me-2" type="submit">登录</button>
-      <router-link tag="button" class="btn btn-link" type="submit" to="/login/forget">忘记密码</router-link>
+<!--      <router-link tag="button" class="btn btn-link btn-sm" type="submit" to="/login/forget">忘记密码</router-link>-->
     </div>
   </form>
 

@@ -1,5 +1,5 @@
 <template>
-  <form class="col-sm-12 col-md-4" @submit="submit">
+  <form class="col-md-12 col-lg-5" @submit="submit">
     <div class="form-floating mb-2">
       <input type="email" v-model="form.username" class="form-control" id="username" required placeholder="">
       <label for="username">邮箱</label>

@@ -1,14 +1,12 @@
 <template>
   <transition name="alert">
-    <div v-show="curShow" id="toast" :class="{alert: true, [`alert-${type}`]: true}">
+    <div v-if="curShow" id="toast" :class="{alert: true, [`alert-${type}`]: true}">
       <div>{{ msg }}</div>
-      <!--      <div class="text-center"><button class="btn btn-primary btn-xs" @click="close">确定</button></div>-->
     </div>
   </transition>
 </template>
 <script>
 export default {
-  // eslint-disable-next-line vue/multi-word-component-names
   name: 'Toast',
   props: {
     msg: {
@@ -43,6 +41,7 @@ export default {
   },
   watch: {
     show (val) {
+      console.log(val)
       if (val) this.curShow = val
       setTimeout(() => {
         this.curShow = false

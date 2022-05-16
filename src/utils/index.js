@@ -24,8 +24,8 @@ toastComponent.$alert = (type, msg, time) => {
   component.show = true
 }
 toastComponent.install = (Vue) => {
-  const component = toastComponent.instance()
   Vue.prototype.$alert = (type, msg, time) => {
+    const component = toastComponent.instance()
     component.type = type
     component.msg = msg
     component.time = time

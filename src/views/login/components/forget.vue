@@ -1,11 +1,13 @@
 <template>
-  <form class="col-sm-12 col-md-4" name="forget" @submit="submit">
-    <button class="btn btn-sm btn-outline-primary mb-2" v-if="show" type="submit" @click="back">返回</button>
-    <div class="form-floating mb-2" v-if="!show">
-      <input type="email" class="form-control" v-model="username" id="username" placeholder="" required>
-      <label for="username" class="form-label">邮箱</label>
+  <form class="col-md-12 col-lg-5 col-md-4" name="forget" @submit="submit">
+    <div class="hstack gap-3 mb-2">
+      <div class="form-floating col-7">
+        <input type="email" class="form-control" v-model="username" id="username" placeholder="" required>
+        <label for="username" class="form-label">邮箱</label>
+      </div>
+      <button class="btn btn-primary col-4" type="button" :disabled="count > 0" @click="sendMail">发送验证邮件 {{this.count || ''}}</button>
     </div>
-    <div v-else>
+    <div>
       <div class="form-floating mb-2">
         <input class="form-control" minlength="6" maxlength="6" v-model="form.code" id="code" placeholder="" required>
         <label for="code" class="form-label">邮箱验证码</label>
@@ -22,8 +24,7 @@
       </div>
     </div>
     <div>
-      <button class="btn btn-primary" v-if="!show" type="submit">发送验证邮件</button>
-      <button class="btn btn-primary" v-else type="submit">提交</button>
+      <button class="btn btn-primary btn-" type="submit">提交</button>
     </div>
   </form>
 <!--  <validation-observer v-slot="{ handleSubmit }">-->
@@ -104,7 +105,7 @@ export default {
   },
   data () {
     return {
-      show: false,
+      count: 0,
       username: '',
       // eslint-disable-next-line vue/no-reserved-keys
       i_password: '',
@@ -140,10 +141,20 @@ export default {
       }
     },
     async sendMail () {
+      if (!this.username) return this.$alert('danger', '请输入邮箱')
       const { data } = await this.$fetch.get('/public/send_mail', { email: this.username }, { toast: true })
       if (data.code === 200) {
-        this.show = true
+        this.countdown()
       }
+    },
+    countdown () {
+      this.count = 60
+      const timer = setInterval(() => {
+        if (this.count === 1) {
+          clearInterval(timer)
+        }
+        this.count -= 1
+      }, 1000)
     }
   }
 }
