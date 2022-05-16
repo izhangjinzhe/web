@@ -1,25 +1,12 @@
 <template>
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2 position-sticky top-0">
   <div class="container">
-    <router-link tag="a" class="navbar-brand fs-6" to="/home/index">首页</router-link>
+    <router-link tag="span" class="navbar-brand fs-6 btn btn-sm" to="/home/index">首页</router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbar">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <router-link tag="a" class="nav-link" to="/home/ask">提问</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link tag="a" class="nav-link" to="/home/share">分享</router-link>
-        </li>
-        <li class="nav-item">
-          <router-link tag="a" class="nav-link" to="/home/advice">建议</router-link>
-        </li>
-        <li class="nav-item me-auto">
-        </li>
-      </ul>
-      <div class="d-flex align-items-center">
+      <div class="ms-auto d-flex align-items-center">
         <input class="form-control me-2" type="search" placeholder="搜索">
         <div class="dropdown" v-if="user">
           <button class="btn dropdown-toggle" href="#" data-bs-toggle="dropdown">

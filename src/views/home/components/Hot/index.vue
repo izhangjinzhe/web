@@ -1,5 +1,5 @@
 <template>
-  <div class="card p-2">
+  <div class="card p-2" style="min-height: 300px" v-loading="loading">
     <div class="fw-bold mb-1">热议</div>
     <article-item class="mb-2" v-for="item in list" :key="item.id" :data="item" type="hot"></article-item>
   </div>
@@ -12,6 +12,7 @@ export default {
   components: { ArticleItem },
   data () {
     return {
+      loading: true,
       list: []
     }
   },
