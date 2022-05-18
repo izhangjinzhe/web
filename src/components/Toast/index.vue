@@ -1,6 +1,6 @@
 <template>
   <transition name="alert">
-    <div v-if="curShow" id="toast" :class="{alert: true, [`alert-${type}`]: true}">
+    <div v-if="curShow" id="toast" :class="{[`alert-${type}`]: true}" class="alert py-2 px-3">
       <div>{{ msg }}</div>
     </div>
   </transition>

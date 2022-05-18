@@ -1,17 +1,17 @@
 <template>
-  <form class="col-md-12 col-lg-5" @submit="submit">
+  <form class="col-md-12 col-lg-6 col-xl-4 col-md-4" @submit="submit" autocomplete="off">
     <div class="form-floating mb-2">
       <input type="email" v-model="form.username" class="form-control" id="username" required placeholder="">
       <label for="username">邮箱</label>
       <div class="form-text">您的邮箱将作为您的唯一用户名</div>
     </div>
     <div class="form-floating mb-2">
-      <input type="password" v-model="form.password" class="form-control" id="password" minlength="8" maxlength="16" placeholder="" pattern="^[a-zA-Z]\w{5,17}$" required>
+      <input type="password" v-model="form.password" class="form-control" id="password" minlength="6" maxlength="18" placeholder="" pattern="^[a-zA-Z]\w{5,17}$" required>
       <label for="password">密码</label>
       <div class="form-text">字母开头，长度在6~18之间，只能包含字母、数字和下划线</div>
     </div>
     <div class="form-floating mb-2">
-      <input type="password" v-model="i_password" class="form-control" id="_password" minlength="8" maxlength="16" placeholder="" pattern="^[a-zA-Z]\w{5,17}$" required>
+      <input type="password" v-model="i_password" class="form-control" id="_password" minlength="6" maxlength="18" placeholder="" pattern="^[a-zA-Z]\w{5,17}$" required>
       <label for="_password">确认密码</label>
       <div v-show="form.password && i_password && form.password !== i_password" class="text-danger fs-7 mt-1">两次输入密码不一致</div>
     </div>
@@ -43,7 +43,7 @@ export default {
       captchaImg: '',
       i_password: '',
       form: {
-        username: '123@123.com',
+        username: '',
         name: '',
         password: '',
         code: ''
