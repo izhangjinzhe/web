@@ -1,10 +1,12 @@
 import axios from 'axios'
 import { toastComponent } from '@/utils/index'
+const CancelToken = axios.CancelToken
 
 console.log(process.env)
 class fetch {
   constructor (url) {
     this.baseUrl = url
+    this.pending = {}
   }
 
   // 获取配置
@@ -19,14 +21,29 @@ class fetch {
     }
   }
 
+  cancel (key, flag) {
+    if (this.pending[key] && flag) {
+      this.pending[key]()
+      toastComponent.$alert('danger', '请勿频繁请求!')
+    }
+    delete this.pending[key]
+  }
+
   // 设定拦截器
   interceptors (instance) {
     instance.interceptors.request.use((conf) => {
+      const key = `${conf.url}&${conf.method}`
+      this.cancel(key, true)
+      conf.cancelToken = new CancelToken((cb) => {
+        this.pending[key] = cb
+      })
       return conf
     }, (err) => {
       errorHandler(err)
     })
     instance.interceptors.response.use((res) => {
+      const key = `${res.config.url}&${res.config.method}`
+      this.cancel(key)
       if (res.status === 200 && res.data.code === 200) {
         if (res.config.toast) {
           toastComponent.$alert('success', res.data.msg)

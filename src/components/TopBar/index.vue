@@ -1,7 +1,7 @@
 <template>
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2 position-sticky top-0">
   <div class="container">
-    <router-link tag="span" class="navbar-brand fs-6 btn btn-sm" to="/home/index">首页</router-link>
+    <router-link tag="span" class=" fs-6 btn btn-sm" to="/home/index">首页</router-link>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
       <span class="navbar-toggler-icon"></span>
     </button>

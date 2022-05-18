@@ -76,6 +76,7 @@ export default {
   top: 10%;
   left: 50%;
   transform: translateX(-50%) translateY(-48%);
+  z-index: 999999999;
   //min-width: 200px;
   //min-height: 50px;
   //padding: 10px;

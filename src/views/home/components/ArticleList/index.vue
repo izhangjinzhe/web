@@ -55,6 +55,7 @@ export default {
   },
   methods: {
     changeSort (value) {
+      if (this.sort === value) return
       this.sort = value
       this.getList()
     },
