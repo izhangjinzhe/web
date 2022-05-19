@@ -1,25 +1,26 @@
 <template>
-  <form ref="form" class="col-md-12 col-lg-6 col-xl-4 col-md-4" autocomplete="off">
-    <div class="form-floating mb-2">
-      <input type="email" v-model="form.username" class="form-control" id="username" required placeholder="">
-      <label for="username">邮箱</label>
-    </div>
-    <div class="form-floating mb-2">
-      <input type="password" v-model="form.password" class="form-control" id="password" minlength="6" maxlength="18" pattern="^[a-zA-Z]\w{5,17}$" placeholder="" required>
-      <label for="password">密码</label>
-    </div>
-    <div class="form-floating mb-2">
-      <input type="text" class="form-control" v-model="form.code" maxlength="6" minlength="6" id="code" placeholder="" required>
-      <label for="code">验证码</label>
-    </div>
-    <div class="mb-2">
-      <div class="captcha" @click="getCaptcha" v-html="captchaImg"></div>
-    </div>
+  <div class="col-md-12 col-lg-6 col-xl-4 col-md-4">
+    <form ref="form" class="" autocomplete="off">
+      <div class="form-floating mb-2">
+        <input type="email" v-model="form.username" class="form-control" id="username" required placeholder="">
+        <label for="username">邮箱</label>
+      </div>
+      <div class="form-floating mb-2">
+        <input type="password" v-model="form.password" class="form-control" id="password" minlength="6" maxlength="18" pattern="^[a-zA-Z]\w{5,17}$" placeholder="" required>
+        <label for="password">密码</label>
+      </div>
+      <div class="form-floating mb-2">
+        <input type="text" class="form-control" v-model="form.code" maxlength="6" minlength="6" id="code" placeholder="" required>
+        <label for="code">验证码</label>
+      </div>
+      <div class="mb-2">
+        <div class="captcha" @click="getCaptcha" v-html="captchaImg"></div>
+      </div>
+    </form>
     <div>
       <button class="btn btn-primary me-2" @click="submit">登录</button>
-<!--      <router-link tag="button" class="btn btn-link btn-sm" type="submit" to="/login/forget">忘记密码</router-link>-->
     </div>
-  </form>
+  </div>
 
 </template>
 

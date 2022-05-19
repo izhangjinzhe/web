@@ -31,7 +31,7 @@
       <div>
       </div>
     </form>
-        <button class="btn btn-primary btn-" @click="submit">提交</button>
+    <button class="btn btn-primary btn-" @click="submit">提交</button>
   </div>
 </template>
 
