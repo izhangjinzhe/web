@@ -1,6 +1,6 @@
 <template>
   <div class="col-md-12 col-lg-6 col-xl-4 col-md-4">
-    <form ref="form" class="" autocomplete="off">
+    <form ref="form" autocomplete="off">
       <div class="form-floating mb-2">
         <input type="email" v-model="form.username" class="form-control" id="username" required placeholder="">
         <label for="username">邮箱</label>
@@ -59,7 +59,10 @@ export default {
       this.captchaImg = data.data
     },
     async submit () {
-      if (!this.$refs.form.checkValidity()) return
+      if (!this.$refs.form.checkValidity()) {
+        this.$refs.form.reportValidity()
+        return
+      }
       const { data } = await this.$fetch.post('/public/login', {
         ...this.form,
         password: md5(this.form.password),

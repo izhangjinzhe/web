@@ -65,7 +65,10 @@ export default {
       this.captchaImg = data.data
     },
     async submit () {
-      if (!this.$refs.form.checkValidity()) return
+      if (!this.$refs.form.checkValidity()) {
+        this.$refs.form.reportValidity()
+        return
+      }
       if (this.i_password !== this.form.password) return
       await this.$fetch.post('/public/register', {
         ...this.form,
