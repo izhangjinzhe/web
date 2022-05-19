@@ -33,7 +33,6 @@ class fetch {
   interceptors (instance) {
     instance.interceptors.request.use((conf) => {
       const key = `${conf.url}&${conf.method}`
-      // console.log(this.pending)
       if (this.pending[key]) {
         this.pending[key]()
         toastComponent.$alert('danger', '请勿频繁请求!')
@@ -49,7 +48,7 @@ class fetch {
     instance.interceptors.response.use((res) => {
       const key = `${res.config.url}&${res.config.method}`
       delete this.pending[key]
-      console.log(this.pending)
+      console.log(this.pending, 22222222222)
       if (res.status === 200 && res.data.code === 200) {
         if (res.config.toast) {
           toastComponent.$alert('success', res.data.msg)
@@ -92,7 +91,7 @@ class fetch {
 }
 
 const errorHandler = (err) => {
-  toastComponent.$alert('danger', err.data.msg)
+  toastComponent.$alert('danger', err.data ? err.data.msg : '系统错误')
 }
 
 export default fetch

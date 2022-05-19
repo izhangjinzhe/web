@@ -1,5 +1,5 @@
 <template>
-  <form class="col-md-12 col-lg-6 col-xl-4 col-md-4" @submit="submit" autocomplete="off">
+  <form ref="form" class="col-md-12 col-lg-6 col-xl-4 col-md-4" autocomplete="off">
     <div class="form-floating mb-2">
       <input type="email" v-model="form.username" class="form-control" id="username" required placeholder="">
       <label for="username">邮箱</label>
@@ -23,7 +23,7 @@
       <div class="captcha" @click="getCaptcha" v-html="captchaImg"></div>
     </div>
     <div>
-      <button class="btn btn-primary" type="submit">登录</button>
+      <button class="btn btn-primary" @click="submit">登录</button>
     </div>
   </form>
 </template>
@@ -44,7 +44,6 @@ export default {
       i_password: '',
       form: {
         username: '',
-        name: '',
         password: '',
         code: ''
       }
@@ -64,6 +63,7 @@ export default {
       this.captchaImg = data.data
     },
     async submit () {
+      if (!this.$refs.form.checkValidity()) return
       if (this.i_password !== this.form.password) return
       await this.$fetch.post('/public/register', {
         ...this.form,

@@ -1,13 +1,15 @@
 <template>
   <div class="col-md-12 col-lg-6 col-xl-4">
-    <div class="mb-2 gap-2 hstack">
-      <form class="col-7" ref="sendMail" name="email">
+    <div class="row align-items-center">
+      <form class="col-md-8 mb-2" ref="sendMail" name="email">
           <div class="form-floating">
             <input autocomplete="off" type="email" class="form-control" v-model="username" id="username" placeholder="" required>
             <label for="username" class="form-label">邮箱</label>
           </div>
       </form>
-      <button class="btn btn-primary col-4" @click="sendMail" :disabled="count > 0">{{this.count || '发送验证邮件'}}</button>
+      <div class="col-md-4 fs-7 mb-2">
+        <button class="btn btn-primary" @click="sendMail" :disabled="count > 0">{{this.count || '发送验证邮件'}}</button>
+      </div>
     </div>
     <form ref="forget" name="forget">
       <div>
