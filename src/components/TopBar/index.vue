@@ -1,12 +1,20 @@
 <template>
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2 position-sticky top-0">
   <div class="container">
-    <router-link tag="span" class=" fs-6 btn btn-sm" to="/home/index">首页</router-link>
+    <span class="navbar-brand fs-6 btn btn-sm" @click="$router.push({path: '/home/index'})">首页</span>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbar">
-      <div class="ms-auto d-flex align-items-center">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="https://www.yuque.com/izhangjinzhe/developer" target="_blank">语雀</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://gitee.com/izhangjinzhe" target="_blank">Gitee</a>
+        </li>
+      </ul>
+      <div class=" d-flex align-items-center">
         <input class="form-control me-2" type="search" placeholder="搜索">
         <div class="dropdown" v-if="user">
           <button class="btn dropdown-toggle" href="#" data-bs-toggle="dropdown">

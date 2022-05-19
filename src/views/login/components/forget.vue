@@ -44,7 +44,7 @@ export default {
     return {
       required: false,
       count: 0,
-      username: '123@123.com',
+      username: '',
       // eslint-disable-next-line vue/no-reserved-keys
       i_password: '',
       form: {

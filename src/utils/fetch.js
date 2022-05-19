@@ -33,7 +33,12 @@ class fetch {
   interceptors (instance) {
     instance.interceptors.request.use((conf) => {
       const key = `${conf.url}&${conf.method}`
-      this.cancel(key, true)
+      // console.log(this.pending)
+      if (this.pending[key]) {
+        this.pending[key]()
+        toastComponent.$alert('danger', '请勿频繁请求!')
+        delete this.pending[key]
+      }
       conf.cancelToken = new CancelToken((cb) => {
         this.pending[key] = cb
       })
@@ -43,7 +48,8 @@ class fetch {
     })
     instance.interceptors.response.use((res) => {
       const key = `${res.config.url}&${res.config.method}`
-      this.cancel(key)
+      delete this.pending[key]
+      console.log(this.pending)
       if (res.status === 200 && res.data.code === 200) {
         if (res.config.toast) {
           toastComponent.$alert('success', res.data.msg)
