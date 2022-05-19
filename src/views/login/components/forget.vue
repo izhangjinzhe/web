@@ -7,8 +7,8 @@
             <label for="username" class="form-label">邮箱</label>
           </div>
       </form>
-      <div class="col-md-4 fs-7 mb-2">
-        <button class="btn btn-primary" @click="sendMail" :disabled="count > 0">{{this.count || '发送验证邮件'}}</button>
+      <div class="col-md-4 mb-2">
+        <button class="btn btn-primary fs-7" @click="sendMail" :disabled="count > 0">{{this.count || '发送验证邮件'}}</button>
       </div>
     </div>
     <form ref="forget" name="forget">

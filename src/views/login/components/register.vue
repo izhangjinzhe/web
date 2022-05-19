@@ -25,7 +25,7 @@
       </div>
     </form>
     <div>
-      <button class="btn btn-primary" @click="submit">登录</button>
+      <button class="btn btn-primary" @click="submit">注册</button>
     </div>
   </div>
 </template>
