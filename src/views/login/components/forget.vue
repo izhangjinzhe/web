@@ -8,7 +8,7 @@
           </div>
       </form>
       <div class="col-md-4 mb-2">
-        <button class="btn btn-primary fs-7" @click="sendMail" :disabled="count > 0">{{this.count || '发送验证邮件'}}</button>
+        <button class="btn btn-primary fs-7" @click="sendMail" :disabled="count > 0 || loading">{{this.count ? `请${this.count}秒后再次发送` : '发送验证邮件'}}</button>
       </div>
     </div>
     <form ref="forget" name="forget">
@@ -49,6 +49,7 @@ export default {
       username: '',
       // eslint-disable-next-line vue/no-reserved-keys
       i_password: '',
+      loading: false,
       form: {
         code: '',
         password: ''
@@ -64,7 +65,6 @@ export default {
       this.$router.push('/home/forget')
     },
     submit () {
-      console.log(this.$refs.sendMail)
       if (!this.$refs.sendMail.checkValidity()) {
         this.$refs.sendMail.reportValidity()
       } else if (!this.$refs.forget.checkValidity()) {
@@ -88,7 +88,9 @@ export default {
         this.$refs.sendMail.reportValidity()
         return
       }
+      this.loading = true
       const { data } = await this.$fetch.get('/public/send_mail', { email: this.username }, { toast: true })
+      this.loading = false
       if (data.code === 200) {
         this.countdown()
       }
