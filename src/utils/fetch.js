@@ -21,21 +21,13 @@ class fetch {
     }
   }
 
-  cancel (key, flag) {
-    if (this.pending[key] && flag) {
-      this.pending[key]()
-      toastComponent.$alert('danger', '请勿频繁请求!')
-    }
-    delete this.pending[key]
-  }
-
   // 设定拦截器
   interceptors (instance) {
     instance.interceptors.request.use((conf) => {
       const key = `${conf.url}&${conf.method}`
       if (this.pending[key]) {
         this.pending[key]()
-        toastComponent.$alert('danger', '请勿频繁请求!')
+        toastComponent.$alert('warning', '请勿频繁请求!')
         delete this.pending[key]
       }
       conf.cancelToken = new CancelToken((cb) => {
