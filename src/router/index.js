@@ -32,7 +32,7 @@ const routes = [
     ]
   },
   {
-    path: '/home/:type',
+    path: '/home/:tag',
     component: () => import('@/views/home/index'),
     name: 'HomePage'
   }
