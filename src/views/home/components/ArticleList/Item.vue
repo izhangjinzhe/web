@@ -2,13 +2,13 @@
   <div class="card p-2">
     <div>
       <div class="d-flex align-items-center mb-1">
-        <span class="badge bg-primary rounded-pill me-2 fs-7 finger">{{ data.tag }}</span>
+        <span class="badge rounded-pill me-2 fs-7 finger tag" :class="[`${data.tag === 'index' ? 'bg-primary' : data.tag === 'share'  ? 'bg-success' : data.tag === 'ask'  ? 'bg-info' : data.tag === 'advice'  ? 'bg-danger' : '' }`]">{{ data.tag }}</span>
         <span class="fs-6 fw-bold finger">{{ data.title }}</span>
       </div>
       <div class="d-flex align-items-end" v-if="type === 'list'">
-        <img  class="me-2 rounded-circle finger" width="20px" height="20px" src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4wEar?ver=c556" alt="图片" />
+        <img  class="me-2 rounded-circle finger" width="20px" height="20px" :src="data.pic" alt="图片" />
         <span class="fw-bold fs-7 me-2 finger">{{ data.userInfo.username }}</span>
-        <span class="me-2 fs-7 finger">{{ data.level }}</span>
+        <span class="me-2 fs-7 finger">Lv <span class="fw-bold">{{ data.level }}</span></span>
         <span class="ms-auto finger">
           <span class="fs-7 fw-bold me-1">{{ data.answer }}</span>
           <i class="bi bi-chat-left-dots fs-7"></i>
@@ -36,4 +36,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+//@import "../../../../../node_modules/bootstrap/scss/variables";
+.tag{
+  &.index{
+    background: var(--bs-blue);
+  }
+}
 </style>

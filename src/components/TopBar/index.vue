@@ -22,7 +22,7 @@
           </button>
           <ul class="dropdown-menu ">
             <li><a class="dropdown-item" href="#">个人中心</a></li>
-            <li><a class="dropdown-item text-danger" @click="quit">退出</a></li>
+            <li><a class="dropdown-item  text-danger" href="#" @click="quit">退出</a></li>
           </ul>
         </div>
         <button v-else-if="!$route.path.includes('login')" class="btn btn-link btn-sm w-50" @click="login">登录</button>

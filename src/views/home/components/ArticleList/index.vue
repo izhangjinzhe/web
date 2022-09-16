@@ -20,9 +20,9 @@
       <article-item class="mb-2" v-for="item in list" :key="item.id" :data="item" type="list"></article-item>
     </div>
     <div class="mt-2 text-center">
-      <button type="button" class="btn btn-outline-primary btn-sm me-2" @click="prev" :disabled="page === 0">上一页</button>
-      <span class="me-2 fs-7">当前页: {{page}}</span>
-      <button type="button" class="btn btn-outline-primary btn-sm" @click="next" :disabled="nextDisable">下一页</button>
+      <button type="button" class="btn btn-outline-primary btn-sm me-2 finger" @click="prev" :disabled="page === 0">上一页</button>
+      <span class="me-2 fs-7">当前页: {{page + 1}}</span>
+      <button type="button" class="btn btn-outline-primary btn-sm finger" @click="next" :disabled="nextDisable">下一页</button>
     </div>
   </div>
 </template>
