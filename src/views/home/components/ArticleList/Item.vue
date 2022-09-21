@@ -2,7 +2,7 @@
   <div class="card p-2">
     <div>
       <div class="d-flex align-items-center mb-1">
-        <span class="badge rounded-pill me-2 fs-7 finger tag" :class="[`${data.tag === 'index' ? 'bg-primary' : data.tag === 'share'  ? 'bg-success' : data.tag === 'ask'  ? 'bg-info' : data.tag === 'advice'  ? 'bg-danger' : '' }`]">{{ data.tag }}</span>
+        <span class="badge rounded-pill me-2 fs-7 finger tag" :class="[`${data.tag === 'index' ? 'bg-primary' : data.tag === 'share'  ? 'bg-success' : data.tag === 'ask'  ? 'bg-info' : data.tag === 'advice'  ? 'bg-danger' : '' }`]">{{ data.tag | tagFilter}}</span>
         <span class="fs-6 fw-bold finger">{{ data.title }}</span>
       </div>
       <div class="d-flex align-items-end" v-if="type === 'list'">
@@ -30,6 +30,21 @@ export default {
     type: {
       type: String,
       default: 'list'
+    }
+  },
+  filters: {
+    tagFilter (val) {
+      console.log(val)
+      switch (val) {
+        case 'index':
+          return '综合'
+        case 'ask':
+          return '提问'
+        case 'share':
+          return '分享'
+        case 'advice':
+          return '建议'
+      }
     }
   }
 }

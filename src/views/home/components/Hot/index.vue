@@ -22,8 +22,14 @@ export default {
   methods: {
     async getHotList () {
       this.loading = true
-      const { data } = await this.$fetch.get('/public/hot_list')
-      this.list = data.data
+      const params = {
+        tag: '',
+        page: 0,
+        sort: 'answer',
+        limit: 6
+      }
+      const { data } = await this.$fetch.get('/public/hot_list', params)
+      this.list = data.data.list
       this.loading = false
     }
   }

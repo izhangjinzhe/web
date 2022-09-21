@@ -79,7 +79,6 @@ export default {
         limit: 10
       }
       const { data } = await this.$fetch.get('/public/post_list', params)
-      console.log(data)
       this.list = data.data.list
       this.nextDisable = this.list.length < 10
       this.loading = false
