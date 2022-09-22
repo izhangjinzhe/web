@@ -7,6 +7,7 @@ const routes = [
   {
     path: '/',
     redirect: '/home/index',
+    name: 'App',
     component: () => import('@/App')
   },
   {
@@ -35,11 +36,40 @@ const routes = [
     path: '/home/:tag',
     component: () => import('@/views/home/index'),
     name: 'HomePage'
+  },
+  {
+    path: '/center',
+    redirect: '/center/user',
+    component: () => import('@/views/userCenter/index'),
+    name: 'UserCenter',
+    children: [
+      {
+        path: 'user',
+        component: () => import('@/views/userCenter/components/user'),
+        name: 'User'
+      }, {
+        path: 'setting',
+        component: () => import('@/views/userCenter/components/setting'),
+        name: 'Setting'
+      }, {
+        path: 'posts',
+        component: () => import('@/views/userCenter/components/posts'),
+        name: 'Posts'
+      }, {
+        path: 'message',
+        component: () => import('@/views/userCenter/components/message'),
+        name: 'Message'
+      }, {
+        path: 'others',
+        component: () => import('@/views/userCenter/components/others'),
+        name: 'Others'
+      }
+    ]
   }
 ]
 
 const router = new VueRouter({
-  linkExactActiveClass: 'btn-primary',
+  linkExactActiveClass: 'active-page',
   routes
 })
 

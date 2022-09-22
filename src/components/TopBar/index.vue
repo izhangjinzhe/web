@@ -1,7 +1,7 @@
 <template>
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-2 position-sticky top-0">
   <div class="container">
-    <span class="navbar-brand fs-6 btn btn-sm" @click="$router.push({path: '/home/index'})">首页</span>
+    <span class="navbar-brand fs-6 btn btn-sm" @click="$router.push({name: 'App'})">首页</span>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -21,7 +21,7 @@
             <i class="bi bi-person-circle me-1"></i>
           </button>
           <ul class="dropdown-menu ">
-            <li><a class="dropdown-item" href="#">个人中心</a></li>
+            <li><a class="dropdown-item" href="#" @click="$router.push({name: 'UserCenter'})">个人中心</a></li>
             <li><a class="dropdown-item  text-danger" href="#" @click="quit">退出</a></li>
           </ul>
         </div>
@@ -53,7 +53,7 @@ export default {
       })
     },
     quit () {
-      setStorage('userInfo', null)
+      setStorage({ key: 'userInfo', value: '' })
       this.$router.replace({ name: 'LoginModule' })
       this.$alert('success', '退出成功')
     }
@@ -61,6 +61,7 @@ export default {
   watch: {
     $route: function () {
       this.user = getStorage('userInfo')
+      console.log(this.user)
     }
   }
 }

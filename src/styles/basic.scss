@@ -11,8 +11,29 @@
 .fs-7{
   font-size: 12px !important;
 }
+*, html, body{
+  font-family: 楷体;
+}
+html, body{
+  height: 100%;
+
+}
+.active-page{
+  color: #fff !important;
+  background-color: #0d6efd !important;
+  border-color: #0d6efd !important;
+}
 .finger{
   cursor: pointer;
+}
+.hover{
+  &:hover:not(.active-page){
+    background: #f2f2f2 !important;
+  }
+}
+.divider{
+  height: 1px;
+  border-bottom: 1px solid #dee2e6;
 }
 input:invalid {
   color: #dc3545;

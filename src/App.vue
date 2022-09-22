@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="h-100">
     <top-bar style="z-index: 2"></top-bar>
     <router-view class="mb-2"></router-view>
     <z-footer></z-footer>

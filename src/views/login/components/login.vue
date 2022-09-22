@@ -70,7 +70,7 @@ export default {
       }, {
         toast: true
       })
-      setStorage('userInfo', data.data)
+      await setStorage({ key: 'userInfo', value: { ...data.data, token: data.token } })
       await this.$router.push({ path: this.$route.query.refresh || '/home/index' })
     }
   }

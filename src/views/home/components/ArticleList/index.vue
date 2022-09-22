@@ -3,7 +3,7 @@
     <div v-loading="loading" style="min-height: 300px" class="position-relative">
     <div class="d-flex align-items-center mb-2">
       <div class="me-auto">
-        <router-link tag="span" to="/home/index" class="finger btn btn-sm">综合</router-link>
+        <router-link class="finger btn btn-sm" tag="span" to="/home/index" >综合</router-link>
         <span class="mx-2 opacity-25">|</span>
         <router-link tag="span" to="/home/ask" class="finger btn btn-sm">提问</router-link>
         <span class="mx-2 opacity-25">|</span>
@@ -29,6 +29,7 @@
 
 <script>
 import ArticleItem from '@/views/home/components/ArticleList/Item'
+import { getStorage } from 'wanado/src/sources/getStorage'
 export default {
   name: 'ArticleList',
   components: { ArticleItem },
@@ -48,6 +49,7 @@ export default {
     }
   },
   created () {
+    console.log(getStorage('userInfo'))
     this.getList()
   },
   watch: {
@@ -70,7 +72,6 @@ export default {
       this.getList()
     },
     async getList () {
-      console.log(this.$route)
       this.loading = true
       const params = {
         tag: this.$route.params.tag === 'index' ? '' : this.$route.params.tag,

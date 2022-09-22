@@ -3,8 +3,12 @@
     <form ref="form" class="" autocomplete="off">
       <div class="form-floating mb-2">
         <input type="email" v-model="form.username" class="form-control" id="username" required placeholder="">
-        <label for="username">邮箱</label>
-        <div class="form-text">您的邮箱将作为您的唯一用户名</div>
+        <label for="username">邮箱账户</label>
+        <div class="form-text">您的邮箱将作为您的唯一用户名登录使用</div>
+      </div>
+      <div class="form-floating mb-2">
+        <input v-model="form.nickname" class="form-control" id="nickname" required placeholder="">
+        <label for="nickname">昵称</label>
       </div>
       <div class="form-floating mb-2">
         <input type="password" v-model="form.password" class="form-control" id="password" minlength="6" maxlength="18" placeholder="" pattern="^[a-zA-Z]\w{5,17}$" required>
@@ -46,6 +50,7 @@ export default {
       i_password: '',
       form: {
         username: '',
+        nickname: '',
         password: '',
         code: ''
       }

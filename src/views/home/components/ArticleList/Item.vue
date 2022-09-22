@@ -34,7 +34,6 @@ export default {
   },
   filters: {
     tagFilter (val) {
-      console.log(val)
       switch (val) {
         case 'index':
           return '综合'

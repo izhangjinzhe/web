@@ -2,7 +2,6 @@ import axios from 'axios'
 import { toastComponent } from '@/utils/index'
 const CancelToken = axios.CancelToken
 
-console.log(process.env)
 class fetch {
   constructor (url) {
     this.baseUrl = url
