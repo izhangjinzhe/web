@@ -1,7 +1,7 @@
 <template>
   <div class="container h-75">
-    <div class="row h-100">
-      <ul class="list-group col-md-2">
+    <div class="row">
+      <ul class="list-group col-md-2 mb-2">
         <router-link to="/center/user" tag="li" class="list-group-item finger hover">用户中心</router-link>
         <router-link to="/center/setting" tag="li" class="list-group-item finger hover">基本设置</router-link>
         <router-link to="/center/message" tag="li" class="list-group-item finger hover">我的消息</router-link>

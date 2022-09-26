@@ -49,8 +49,28 @@ const routes = [
         name: 'User'
       }, {
         path: 'setting',
+        redirect: '/center/setting/info',
         component: () => import('@/views/userCenter/components/setting'),
-        name: 'Setting'
+        name: 'Setting',
+        children: [
+          {
+            path: 'info',
+            component: () => import('@/views/userCenter/components/setting/info'),
+            name: 'Info'
+          }, {
+            path: 'pic',
+            component: () => import('@/views/userCenter/components/setting/pic'),
+            name: 'Pic'
+          }, {
+            path: 'pwd',
+            component: () => import('@/views/userCenter/components/setting/pwd'),
+            name: 'Pwd'
+          }, {
+            path: 'bind',
+            component: () => import('@/views/userCenter/components/setting/bind'),
+            name: 'Bind'
+          }
+        ]
       }, {
         path: 'posts',
         component: () => import('@/views/userCenter/components/posts'),
@@ -69,7 +89,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  linkExactActiveClass: 'active-page',
+  linkActiveClass: 'active-page',
   routes
 })
 
